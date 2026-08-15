@@ -21,6 +21,8 @@ Google Drive knowledge → Supabase/Postgres vector search → ESC ideation skil
 
 The current MVP contains 1,000 Germany-coordinated ESC records in Supabase/Postgres with `vector(384)` embeddings, HNSW search, and an authenticated `esc-search` Edge Function. Direct table reads remain protected by RLS.
 
+Exact source-sheet URLs and Supabase project identifiers are intentionally not committed to this public repository. See [`docs/CONFIG.example.md`](docs/CONFIG.example.md) for the private configuration boundary.
+
 ## Current capabilities
 
 - Route an ideation request through one named creative method.
@@ -55,4 +57,3 @@ In a Codex environment, also run the platform skill validator against `skill/esc
 ## Licensing
 
 See [`NOTICE.md`](NOTICE.md) and [`skill/esc-project-ideation/references/hermes-attribution.md`](skill/esc-project-ideation/references/hermes-attribution.md). No service-role keys or other secrets are included.
-

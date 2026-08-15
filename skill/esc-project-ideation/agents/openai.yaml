@@ -1,0 +1,14 @@
+interface:
+  display_name: ESC Project Ideation
+  short_description: Grounded ideation for solidarity projects
+  default_prompt: Use $esc-project-ideation to turn this ESC context into a grounded,
+    fundable project concept.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
