@@ -118,3 +118,24 @@ Recommendation: start with the Precedent-to-Listening Sprint. It puts the corpus
 
 Pass. The run selected a method before generating, used the handoff facts without inventing project records or eligibility, produced three different mechanisms, identified a grounded direction, and gave each direction a validation step and failure mode. The main residual risk is that a live corpus query would be needed before attaching specific project precedents to a future concept.
 
+## Retrieval-aware forward test
+
+Date: 2026-08-15
+
+Prompt: use the installed skill to propose three ESC directions for a small Brandenburg nonprofit addressing social isolation among rural young adults, use current corpus precedents if available, recommend one direction, and give each a 7–14 day validation step.
+
+Result: pass with one refinement. The fresh agent selected `leverage-points.md`, attempted the configured retrieval route, clearly reported that live corpus search was unavailable without runtime credentials, and did not invent internal project records. It produced three distinct solidarity mechanisms, a scored recommendation, concrete validation steps, failure modes, and explicit eligibility caveats.
+
+The run also showed that a requested topic can be mislabeled as evidence of local need. `SKILL.md` was tightened so themes, target groups, and desired outcomes remain user intent until supported by observations, interviews, partner statements, or another source. A successful authenticated adapter-to-evidence run remains the next live test.
+
+## Publication validation
+
+Date: 2026-08-16
+
+- 12 Python client tests passed.
+- 9 Edge Function request/admin contract tests passed, including modern `sb_secret_...` and legacy service-role header behavior.
+- Python compilation, Node syntax checking, shell syntax checking, bundle validation, and the installed-skill validator passed.
+- A read-only backend check confirmed 1,000 rows, RLS enabled, an active JWT-verified `esc-search` function, and no security-advisor findings.
+- The short demo in `examples/DEMO.md` matches the forward-tested behavior: retrieve when credentials exist; otherwise label the limitation and do not invent precedents.
+
+The hardened Edge Function snapshot was not deployed during this publication check. The repository therefore fits the live architecture, but deploying the reviewed function and running an authenticated adapter-to-evidence request remain explicit operator steps.

@@ -10,5 +10,14 @@ venv/
 dist/
 build/
 .coverage
+coverage.xml
+htmlcov/
 *.egg-info/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+*.log
 
+# Local Supabase CLI state; keep checked-in schema/config snapshots visible.
+supabase/.branches/
+supabase/.temp/

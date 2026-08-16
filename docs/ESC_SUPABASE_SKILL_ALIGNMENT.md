@@ -11,9 +11,9 @@
 - **Authenticated access:** it follows the intended security boundary: query the authenticated `esc-search` Edge Function rather than reading the table directly. RLS and the deny-all direct-read policy remain intact.
 - **Large-model harness + custom skills:** this skill fits as a deeper reasoning module after retrieval. Gemini or another lightweight tool can still handle quick reference searches.
 
-## Current gap
+## Current state
 
-The skill contains instructions, not an executable Supabase client or retrieval adapter. Its smoke test used the MVP handoff summary rather than a live database query.
+The skill now includes a zero-dependency retrieval client that calls the authenticated `esc-search` surface and validates the returned evidence shape. Offline mocked tests pass. The documented ideation smoke test still used the MVP handoff summary; an authenticated live adapter-to-evidence run remains pending.
 
 ## Intended flow
 
@@ -23,7 +23,6 @@ Drive knowledge → Supabase semantic search → ESC ideation skill → grounded
 
 ## Next implementation step
 
-Add a small live retrieval adapter that accepts a need, target group, place, activity, and optional country/action/year filters; calls `esc-search`; returns 3–7 source-linked records; and passes them into the skill’s evidence ledger.
+Run an authorized live search with a short-lived user JWT, verify that 3–7 source-linked records pass through the adapter unchanged, and feed them into the skill’s evidence ledger. Then connect the reviewed output to the private Drive workflow.
 
-The architecture is therefore **conceptually aligned but operationally incomplete**. The remaining larger-scale gaps are multilingual embeddings, full-European ingestion, scheduled sync, and production client/MCP integration.
-
+The architecture is now **implemented locally but not yet live-verified end to end**. The remaining larger-scale gaps are multilingual embeddings, full-European ingestion, scheduled sync, Drive output automation, and production MCP integration.

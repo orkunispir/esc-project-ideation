@@ -68,4 +68,4 @@ Table: `public.esc_projects`
 
 - `gte-small` is English-focused and truncates long inputs after 512 tokens; a multilingual model should be evaluated before expanding to all European records.
 - The current Sheet contains only 1,000 Germany records. The next ingestion phase should discover the source API/XHR and build a resumable, duplicate-safe full-European import.
-- A frontend, MCP integration, scheduled sync, and production client wrapper are not yet included.
+- A local credential-safe retrieval client is now included. A frontend, production MCP integration, scheduled sync, and authenticated end-to-end smoke test are not yet included.

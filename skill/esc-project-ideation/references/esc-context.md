@@ -26,6 +26,7 @@ Create a remotely accessible semantic-search MVP for European Solidarity Corps p
 - Model tag: `gte-small`; all 1,000 rows had embeddings at handoff.
 - RPC: `search_esc_projects(query_embedding, match_count, filter_country, filter_action, filter_funding_year)`.
 - Authenticated Edge Function: `https://<project-ref>.supabase.co/functions/v1/esc-search`.
+- The current search response returns project identifier, title, summary, project-card URL, action, coordinator country, funding year, funding amount, and similarity. Participating countries remain in the source table but are not part of the current retrieval response.
 
 ## Known verification and limits
 
@@ -38,7 +39,7 @@ Create a remotely accessible semantic-search MVP for European Solidarity Corps p
 
 ## How to use this context
 
-Treat a retrieved record as a precedent or data point. Use its title, summary, action, year, geography, participating countries, and funding amount to ask better questions:
+Treat a retrieved record as a precedent or data point. Use the fields actually returned—title, summary, action, year, coordinator geography, funding amount, similarity, and project-card provenance—to ask better questions. Use participating countries only when they come from an attached source record or another supplied document.
 
 - Which needs and participant groups are overrepresented or absent?
 - Which project mechanisms recur, and where do they fail to explain actual work?

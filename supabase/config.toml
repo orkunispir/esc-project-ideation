@@ -1,0 +1,8 @@
+# Local-only Supabase configuration. This identifier is deliberately non-secret.
+project_id = "esc-project-ideation-local"
+
+[functions.esc-search]
+verify_jwt = true
+
+[functions.esc-indexer]
+verify_jwt = true

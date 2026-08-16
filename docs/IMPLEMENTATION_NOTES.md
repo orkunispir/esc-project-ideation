@@ -14,11 +14,14 @@ The adaptation makes the creative method only one half of the workflow. Every di
 esc-project-ideation/
 ├── SKILL.md
 ├── agents/openai.yaml
+├── scripts/
+│   └── search_esc.py
 └── references/
     ├── esc-context.md
     ├── esc-method-routing.md
     ├── esc-ideation-rubric.md
     ├── esc-output-templates.md
+    ├── supabase-retrieval.md
     ├── hermes-attribution.md
     ├── anti-slop.md
     ├── exercises.md
@@ -41,5 +44,4 @@ The Hermes reference library comes from `NousResearch/hermes-agent` at commit `f
 
 ## Intended next iteration
 
-Run the skill against live retrieved project records and local partner notes. Add source-specific query examples only after the Supabase search contract and the full-European corpus are stable. Evaluate multilingual retrieval before expanding beyond the Germany slice.
-
+Run the authenticated client against live project records with a short-lived user JWT, then pass 3–7 retrieved precedents into the evidence ledger alongside local partner notes. Keep source-specific query examples private until the search contract and corpus coverage are stable. Evaluate multilingual retrieval before expanding beyond the Germany slice.
