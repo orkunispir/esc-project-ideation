@@ -2,6 +2,8 @@
 
 Date: 2026-08-13
 
+> Historical note: this was an offline skill-output smoke test based on the MVP handoff. It does not exercise the retrieval adapter. The adapter now has separate synthetic offline tests; no live Supabase request has been verified.
+
 ## Purpose
 
 Exercise the installed `esc-project-ideation` skill on the current ESC semantic-search direction, using the supplied MVP handoff as the only factual project source. The test checks routing, Hermes-method use, evidence labels, meaningful project mechanisms, feasibility, and non-fabrication.

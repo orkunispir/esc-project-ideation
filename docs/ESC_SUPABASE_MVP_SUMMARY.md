@@ -3,6 +3,8 @@
 Date: 2026-08-09
 
 > Public-safe handoff: exact source URLs and Supabase infrastructure identifiers are intentionally omitted. Keep them in private deployment configuration.
+>
+> Historical note: this handoff predates the retrieval adapter. The repository now includes an offline-tested CLI adapter at `skill/esc-project-ideation/scripts/esc_search.py`, but the deployed Edge Function's HTTP JSON contract remains unverified. The RPC signature below is documented context, not proof of the adapter's compatibility.
 
 ## Goal
 
@@ -68,4 +70,4 @@ Table: `public.esc_projects`
 
 - `gte-small` is English-focused and truncates long inputs after 512 tokens; a multilingual model should be evaluated before expanding to all European records.
 - The current Sheet contains only 1,000 Germany records. The next ingestion phase should discover the source API/XHR and build a resumable, duplicate-safe full-European import.
-- A frontend, MCP integration, scheduled sync, and production client wrapper are not yet included.
+- At the time of this handoff, a frontend, MCP integration, scheduled sync, and production client wrapper were not yet included. A dependency-free CLI retrieval adapter now exists in the skill, but it is offline-tested only and its Edge Function HTTP contract is provisional.
