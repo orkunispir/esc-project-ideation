@@ -10,10 +10,14 @@ required_files=(
   "$skill_dir/SKILL.md"
   "$skill_dir/agents/openai.yaml"
   "$skill_dir/references/esc-context.md"
+  "$skill_dir/references/esc-retrieval-adapter.md"
   "$skill_dir/references/esc-method-routing.md"
   "$skill_dir/references/esc-ideation-rubric.md"
   "$skill_dir/references/esc-output-templates.md"
   "$skill_dir/references/hermes-attribution.md"
+  "$skill_dir/scripts/esc_search.py"
+  "$root_dir/tests/test_esc_search.py"
+  "$root_dir/docs/CONFIG.example.md"
   "$root_dir/docs/SMOKE_TEST.md"
 )
 
@@ -30,4 +34,5 @@ if command -v rg >/dev/null 2>&1 && rg -n 'TODO|Structuring This Skill' "$skill_
 fi
 
 printf 'ESC Project Ideation bundle is structurally valid (%s method files).\n' "$method_count"
+printf 'Run offline adapter tests with: python3 -m unittest discover -s tests -p '\''test_*.py'\'' -v\n'
 

@@ -19,7 +19,7 @@ Combine a routed creative method with evidence from the European Solidarity Corp
 
 ## Read the right references
 
-Read `references/esc-context.md` first when the request concerns the current ESC project-finding MVP or its corpus. Read `references/esc-method-routing.md` for every ideation request, then load only the one selected method from `references/methods/`. Read `references/esc-ideation-rubric.md` and `references/esc-output-templates.md` when producing or comparing project concepts. Apply `references/anti-slop.md` to the creative layer; it is inherited from Hermes and must be supplemented with the ESC-specific checks here.
+Read `references/esc-context.md` first when the request concerns the current ESC project-finding MVP or its corpus. Read `references/esc-retrieval-adapter.md` before using the installed retrieval script; its HTTP contract is provisional and has not been live-verified. Read `references/esc-method-routing.md` for every ideation request, then load only the one selected method from `references/methods/`. Read `references/esc-ideation-rubric.md` and `references/esc-output-templates.md` when producing or comparing project concepts. Apply `references/anti-slop.md` to the creative layer; it is inherited from Hermes and must be supplemented with the ESC-specific checks here.
 
 The remaining `references/` files are the copied Hermes method library: `method-catalog.md`, `heuristics.md`, `full-prompt-library.md`, and `exercises.md`. Use them selectively. Do not load every method file for one answer.
 
@@ -46,7 +46,16 @@ Use the strongest available source in this order:
 3. Current official programme guidance when discussing eligibility, priorities, deadlines, or scoring.
 4. Clearly labelled hypotheses when no evidence is available.
 
-When the Supabase search endpoint or another corpus search is available, retrieve a small, relevant comparison set using the need, target group, place, activity, and outcome—not just “interesting projects.” Record project identifiers, titles, years, summaries, funding amounts, and URLs only when returned by the source. Use 3–7 records to expose patterns, missing categories, and overused shapes. Do not present the corpus as exhaustive unless its coverage is known.
+When credentials are configured, use the installed adapter to retrieve a small, relevant comparison set:
+
+```bash
+python3 <skill-dir>/scripts/esc_search.py "<need, target group, place, activity, or outcome>" \
+  --country <country> --action "<action>" --funding-year <year> --limit 5
+```
+
+The query should carry the need, target group, place, activity, and outcome; the optional filters are only for country/action/year. Use `--format markdown` when an evidence-ready rendering is useful. The adapter defaults to JSON, preserves returned identifiers, URLs, titles, full summaries, and funding amounts (including zero), and fails rather than guessing when required provenance is missing or a selected source URL is not an absolute HTTP(S) URL. It has a **provisional, not live-verified** HTTP contract; read `references/esc-retrieval-adapter.md` and surface that limit when it matters.
+
+If the adapter or credentials are unavailable, use supplied project records, documents, or user observations instead. A zero-record result is valid but is not evidence that no relevant project exists. Record project identifiers, titles, years, summaries, funding amounts, and URLs only when returned by the source. Use 3–7 records to expose patterns, missing categories, and overused shapes. Do not present the corpus as exhaustive unless its coverage is known.
 
 Create a compact evidence ledger:
 
@@ -96,7 +105,7 @@ Every concept must include a concrete mechanism, intended participants/community
 ## Tool and source boundaries
 
 - Use the Google Drive workflow when project documents or the corpus source are in Drive; preserve links and provenance in working notes.
-- Use Supabase tools only through the configured Supabase workflow when querying the ESC MVP. Never request or expose service-role credentials; use the authenticated search surface described in `esc-context.md`.
+- Use the installed `scripts/esc_search.py` when querying the ESC MVP. It reads `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_ACCESS_TOKEN` from the environment and calls only the authenticated `esc-search` Edge Function. Never request, print, or pass service-role credentials as command arguments, and never substitute direct table access for the configured search surface. See `references/esc-retrieval-adapter.md`.
 - Browse official EU/ESC sources for current rules, priorities, deadlines, or scoring. Treat third-party examples as inspiration or leads, not authority.
 - If a required fact is unavailable, leave an explicit open question and propose a validation action instead of filling the gap with plausible prose.
 
@@ -108,6 +117,7 @@ Before returning, verify:
 - [ ] The concept is tied to a real need, community, place, or partner situation.
 - [ ] The solidarity mechanism and participant work are concrete.
 - [ ] Evidence, inference, and hypothesis are separated.
+- [ ] Each retrieved precedent keeps its source identifier and URL; missing provenance was not treated as a valid record, and similarity was not presented as confidence.
 - [ ] At least one direction is buildable/pursuable now.
 - [ ] A failure mode, trade-off, ethical risk, and first validation step are present.
 - [ ] No invented eligibility, score, statistic, partner, impact, or funding amount appears.

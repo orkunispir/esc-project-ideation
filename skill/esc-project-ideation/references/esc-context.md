@@ -26,6 +26,7 @@ Create a remotely accessible semantic-search MVP for European Solidarity Corps p
 - Model tag: `gte-small`; all 1,000 rows had embeddings at handoff.
 - RPC: `search_esc_projects(query_embedding, match_count, filter_country, filter_action, filter_funding_year)`.
 - Authenticated Edge Function: `https://<project-ref>.supabase.co/functions/v1/esc-search`.
+- Adapter: `scripts/esc_search.py` (offline-tested, not live-verified). Its provisional Edge Function HTTP contract and usage are in `esc-retrieval-adapter.md`.
 
 ## Known verification and limits
 
@@ -34,7 +35,7 @@ Create a remotely accessible semantic-search MVP for European Solidarity Corps p
 - Repeated upsert remained at 1,000 rows and preserved existing embeddings.
 - RLS and an explicit deny-all policy protect direct table access; the temporary indexer and `pg_net` setup were removed.
 - `gte-small` is English-focused and truncates long inputs after 512 tokens. Evaluate a multilingual model before expanding beyond the Germany slice.
-- The next ingestion phase should discover the source API/XHR and support resumable, duplicate-safe import. Frontend, MCP integration, scheduled sync, and production client wrapper are not yet included.
+- The next ingestion phase should discover the source API/XHR and support resumable, duplicate-safe import. At handoff, frontend, MCP integration, scheduled sync, and a production client wrapper were not yet included. A dependency-free CLI adapter now exists in the skill, but it is offline-tested only and its deployed HTTP contract is unverified.
 
 ## How to use this context
 
